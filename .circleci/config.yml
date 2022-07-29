@@ -25,7 +25,7 @@ jobs:
           command: "./main"
       - integration test:
           name: "call server"
-          command: "curl -X GET "http://localhost:9090/api/echo?text=testingJson""
+          command: "curl -X GET 'http://localhost:9090/api/echo?text=testingJson' "
 
 # Invoke jobs via workflows
 # See: https://circleci.com/docs/2.0/configuration-reference/#workflows
