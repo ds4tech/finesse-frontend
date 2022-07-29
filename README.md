@@ -30,8 +30,8 @@ http://localhost:9090/
 
 ### Docker container <a name="build.docker"></a>
 ```
-docker build -t cavantis-webserver:0.0.1 .
-docker run -it --rm -p 9090:9090 --name hello-cavantis-webserver cavantis-webserver:0.0.1
+docker build -t covantis-webserver:0.0.1 .
+docker run -it --rm -p 9090:9090 --name hello-covantis-webserver covantis-webserver:0.0.1
 
 http://localhost:9090/
 ```
@@ -40,11 +40,19 @@ http://localhost:9090/
 
 ### Kubernetes <a name="deploy.k8s"></a>
 ```
-kubectl create -f deployments/kubernetes/k8s-replicaSet.yml
+kubectl apply -f deployment/kubernetes/manifest.yaml
+kubectl port-forward svc/hello-covantis 9090
 
-http://192.168.99.100:30000/
+http://localhost:9090/
 ```
 
+### Helm <a name="deploy.k8s"></a>
+```
+kubectl apply -f deployment/kubernetes/manifest.yaml
+kubectl port-forward svc/hello-covantis 9090
+
+http://localhost:9090/
+```
 
 ## USEAGE <a name="usage"></a>
 
