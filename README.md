@@ -1,5 +1,6 @@
 # covantis-sre
 
+[![CircleCI](https://dl.circleci.com/status-badge/img/gh/ds4tech/covantis-sre/tree/main.svg?style=svg)](https://dl.circleci.com/status-badge/redirect/gh/ds4tech/covantis-sre/tree/main)
 
 # Simple Web-server application written in Go lang. The purpose is to demonstrate variety of ways for CICD.
 
@@ -48,7 +49,7 @@ http://localhost:9090/
 
 ### Helm <a name="deploy.k8s"></a>
 ```
-kubectl apply -f deployment/kubernetes/manifest.yaml
+helm install hello-covantis ./deployment/helm/charts/hello-covantis
 kubectl port-forward svc/hello-covantis 9090
 
 http://localhost:9090/
@@ -62,5 +63,4 @@ curl -X GET "http://localhost:9090/api/echo?text=testingJson"
 ```
 
 ## Continous Integration <a name="ci"></a>
-Pipeline script written in Groovy is placed in [build/ci directory](https://github.com/ds4tech/pipeline-calculator-ws/blob/master/build/ci/pipeline.yaml). It is dedicated for Jenkins Pipeline JOB. <br>
-To run Jenkins on AWS, run terraform scripts in deployments/aws/jenkins-ec2_instance
+Pipeline script written in yaml file for Circle CI is placed in [build/ci directory](https://github.com/ds4tech/covantis-sre/blob/main/.circleci/config.yml).  <br>
