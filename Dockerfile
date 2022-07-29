@@ -1,4 +1,4 @@
-FROM golang:1.17rc1-alpine
+FROM golang:1.17-alpine
 
 # Add Maintainer Info
 LABEL maintainer="Mateusz Szymczyk"
@@ -20,7 +20,7 @@ RUN go build -v -o /usr/local/bin/webserver ./cmd/main.go
 
 
 # Expose port 8888 to the outside world
-EXPOSE 8080
+EXPOSE 9090
 
 # Command to run the executable
 CMD ["webserver"]

@@ -1,0 +1,44 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  labels:
+    app: hello-cavantis
+  name: hello-cavantis
+  namespace: monitoring
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: hello-cavantis
+  strategy: {}
+  template:
+    metadata:
+      labels:
+        app: hello-cavantis
+    spec:
+      containers:
+      - image: ds4tech/covantis:0.0.1
+        name: hello-cavantis
+        resources: {}
+        ports:
+          - name: container-port
+            containerPort: 9090
+            protocol: TCP
+
+---
+apiVersion: v1
+kind: Service
+metadata:
+  labels:
+    app: hello-cavantis
+  name: hello-cavantis
+  namespace: monitoring
+spec:
+  type: ClusterIP
+  ports:
+  - name: cavantis
+    port: 9090
+    protocol: TCP
+    targetPort: 9090
+  selector:
+    app: hello-cavantis

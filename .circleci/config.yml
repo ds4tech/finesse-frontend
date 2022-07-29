@@ -17,14 +17,14 @@ jobs:
             # "golangci-lint --version"
             # "golangci-lint run"
       - run:
-          name: "build code"
+          name: "Build code"
           command: "go build -o webserver cmd/main.go"
   test:
     docker:
       - image: cimg/go:1.17
     steps:
       - run:
-          name: "acceptance test"
+          name: "Acceptance test"
           command: "ls"
             # "./webserver"
             # "curl -X GET 'http://localhost:9090/api/echo?text=testingJson' "

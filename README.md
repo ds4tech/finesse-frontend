@@ -15,25 +15,25 @@
 
 ## Introduction <a name="intro"></a>
 
-Simple Go Calculator project with some math function:<a name="intro"></a>
+Simple Webserver Go project:<a name="intro"></a>
 - Echo
 
 ## BUILD <a name="build"></a>
 
 ### Executable <a name="build.exe"></a>
 ```
-go build -o main cmd/calculator/main.go
-./main
+go build -o webserver cmd/main.go 
+./webserver
 
-http://localhost:8888/
+http://localhost:9090/
 ```
 
 ### Docker container <a name="build.docker"></a>
 ```
-docker build -t go-calc -f build/package/Dockerfile .
-docker run -d -p 80:8888 go-calc
+docker build -t cavantis-webserver:0.0.1 .
+docker run -it --rm -p 9090:9090 --name hello-cavantis-webserver cavantis-webserver:0.0.1
 
-http://localhost/
+http://localhost:9090/
 ```
 
 ## DEPLOY <a name="deploy"></a>
