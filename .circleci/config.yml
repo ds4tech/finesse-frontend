@@ -23,8 +23,8 @@ jobs:
       - run:
           name: "run webserver"
           command: "./main"
-      - integration test:
-          name: "call server"
+      - run:
+          name: "integration test"
           command: "curl -X GET 'http://localhost:9090/api/echo?text=testingJson' "
 
 # Invoke jobs via workflows
