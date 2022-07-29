@@ -9,7 +9,7 @@ jobs:
     # Specify the execution environment. You can specify an image from Dockerhub or use one of our Convenience Images from CircleCI's Developer Hub.
     # See: https://circleci.com/docs/2.0/configuration-reference/#docker-machine-macos-windows-executor
     docker:
-      - image: cimg/go:1.16
+      - image: cimg/go:1.17
     # Add steps to the job
     # See: https://circleci.com/docs/2.0/configuration-reference/#steps
     steps:
@@ -19,9 +19,15 @@ jobs:
           command: "echo Hello, World!"
       - run:
           name: "build code"
-          command: "go build -o webserver cmd/main.go; ls -o"
+          command: |
+            "go build -o webserver cmd/main.go; ls -o"
+            "./webserver"
+  test:
+    docker:
+      - image: cimg/go:1.17
+    steps:
       - run:
-          name: "integration test"
+          name: "acceptance test"
           command: |
             "ls"
             "./webserver"
@@ -30,6 +36,9 @@ jobs:
 # Invoke jobs via workflows
 # See: https://circleci.com/docs/2.0/configuration-reference/#workflows
 workflows:
-  build-workflow:
+  build-test-workflow:
     jobs:
       - build
+      - test:
+          requires:
+            - build
