@@ -49,16 +49,10 @@ http://192.168.99.100:30000/
 ## USEAGE <a name="usage"></a>
 
 1. Echo
-- (x int64, y int64)
-- http://localhost:8888/sum
-- JSON: {"num1":"2","num2":"4"}
-- curl:
 ```
-curl --location --request POST "http://localhost:8888/sum" \
---header "Content-Type: application/json" \
---data "{\"num1\":\"2\",
-\"num2\":\"4\"}"
+curl -X GET "http://localhost:9090/api/echo?text=testingJson"
 ```
+
 ## Continous Integration <a name="ci"></a>
 Pipeline script written in Groovy is placed in [build/ci directory](https://github.com/ds4tech/pipeline-calculator-ws/blob/master/build/ci/pipeline.yaml). It is dedicated for Jenkins Pipeline JOB. <br>
 To run Jenkins on AWS, run terraform scripts in deployments/aws/jenkins-ec2_instance
