@@ -22,8 +22,7 @@ jobs:
             # "golangci-lint run"
       - run:
           name: "build code"
-          command: |
-            "go build -o webserver cmd/main.go; ls -o"
+          command: "go build -o webserver cmd/main.go"
   test:
     docker:
       - image: cimg/go:1.17
