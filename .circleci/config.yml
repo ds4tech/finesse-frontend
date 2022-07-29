@@ -5,7 +5,7 @@ version: 2.1
 # Define a job to be invoked later in a workflow.
 # See: https://circleci.com/docs/2.0/configuration-reference/#jobs
 jobs:
-  compile:
+  build:
     # Specify the execution environment. You can specify an image from Dockerhub or use one of our Convenience Images from CircleCI's Developer Hub.
     # See: https://circleci.com/docs/2.0/configuration-reference/#docker-machine-macos-windows-executor
     docker:
@@ -18,12 +18,12 @@ jobs:
           name: "Init pipeline"
           command: "echo Hello, World!"
       - run:
-          name: "Compile code"
+          name: "build code"
           command: "go build -o main cmd/main.go"
 
 # Invoke jobs via workflows
 # See: https://circleci.com/docs/2.0/configuration-reference/#workflows
 workflows:
-  compile-workflow:
+  build-workflow:
     jobs:
-      - compile
+      - build

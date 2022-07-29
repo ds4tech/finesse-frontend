@@ -1,6 +1,7 @@
 package common
 
 import (
+	"encoding/json"
 	"fmt"
 	"net/http"
 )
@@ -16,10 +17,13 @@ func Health(w http.ResponseWriter, r *http.Request) {
 }
 
 func EchoHandler(w http.ResponseWriter, r *http.Request) {
+	w.Header().Set("Content-Type", "application/json")
 	txt := r.URL.Query().Get("text")
 	if len([]rune(txt)) < 1 {
 		txt = "Text not provided in a query string."
 	}
-	fmt.Println("text =>", txt)
-	fmt.Fprintf(w, txt)
+
+	jsonMap := map[string]string{"result": txt}
+	jsonResult, _ := json.Marshal(jsonMap)
+	fmt.Fprintf(w, string(jsonResult))
 }
