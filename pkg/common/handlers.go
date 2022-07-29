@@ -13,7 +13,7 @@ func HomeLink(w http.ResponseWriter, r *http.Request) {
 }
 
 func Health(w http.ResponseWriter, r *http.Request) {
-	fmt.Fprintf(w, "Here the logs come:")
+	fmt.Fprintf(w, "Server version 0.0.1\nmore information will be added soon.")
 }
 
 func EchoHandler(w http.ResponseWriter, r *http.Request) {

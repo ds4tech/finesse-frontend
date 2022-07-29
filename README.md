@@ -2,7 +2,7 @@
 
 [![CircleCI](https://dl.circleci.com/status-badge/img/gh/ds4tech/covantis-sre/tree/main.svg?style=svg)](https://dl.circleci.com/status-badge/redirect/gh/ds4tech/covantis-sre/tree/main)
 
-# Simple Web-server application written in Go lang. The purpose is to demonstrate variety of ways for CICD.
+### Simple Web-server application written in Go lang.
 
 1. [Introduction](#intro)
 2. [Build](#build) <br>
@@ -17,7 +17,9 @@
 ## Introduction <a name="intro"></a>
 
 Simple Webserver Go project:<a name="intro"></a>
-- Echo
+API:
+- /-/health - returns server version 
+- echo - /api/echo?text=foo --> returns a JSON object with the key "text
 
 ## BUILD <a name="build"></a>
 
