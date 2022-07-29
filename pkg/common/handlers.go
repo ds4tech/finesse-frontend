@@ -16,6 +16,10 @@ func Health(w http.ResponseWriter, r *http.Request) {
 }
 
 func EchoHandler(w http.ResponseWriter, r *http.Request) {
-	res := "print sth"
-	fmt.Fprintf(w, res)
+	txt := r.URL.Query().Get("text")
+	if len([]rune(txt)) < 1 {
+		txt = "Text not provided in a query string."
+	}
+	fmt.Println("text =>", txt)
+	fmt.Fprintf(w, txt)
 }
