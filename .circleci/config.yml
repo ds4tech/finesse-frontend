@@ -24,7 +24,7 @@ jobs:
           name: "integration test"
           command: |
             "ls"
-            "./webserver &"
+            "./webserver"
             "curl -X GET 'http://localhost:9090/api/echo?text=testingJson' "
 
 # Invoke jobs via workflows
