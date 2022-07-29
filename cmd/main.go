@@ -9,7 +9,7 @@ import (
 )
 
 func main() {
-	fmt.Println("Starting server...\n")
+	fmt.Println("Starting server...")
 
 	router := common.NewRouter()
 	log.Fatal(http.ListenAndServe(":9090", router))

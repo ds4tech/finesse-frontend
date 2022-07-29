@@ -15,13 +15,14 @@ jobs:
     steps:
       - checkout
       - run:
-          name: "Init pipeline"
-          command: "echo Hello, World!"
+          name: "Linting"
+          command: |
+            "go install github.com/golangci/golangci-lint/cmd/golangci-lint@latest"
+            "golangci-lint run"
       - run:
           name: "build code"
           command: |
             "go build -o webserver cmd/main.go; ls -o"
-            "./webserver"
   test:
     docker:
       - image: cimg/go:1.17
