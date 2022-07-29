@@ -19,10 +19,10 @@ jobs:
           command: "echo Hello, World!"
       - run:
           name: "build code"
-          command: "go build -o main cmd/main.go"
+          command: "go build -o webserver cmd/main.go"
       - run:
           name: "run webserver"
-          command: "./main"
+          command: "./webserver &"
       - run:
           name: "integration test"
           command: "curl -X GET 'http://localhost:9090/api/echo?text=testingJson' "
