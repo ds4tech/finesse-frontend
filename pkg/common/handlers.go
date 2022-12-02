@@ -4,12 +4,15 @@ import (
 	"encoding/json"
 	"fmt"
 	"net/http"
+    "os"
 )
 
 var dat map[string]interface{}
 
 func HomeLink(w http.ResponseWriter, r *http.Request) {
-	fmt.Fprintf(w, "Welcome to simple Webserver!")
+	env := os.Getenv("ENV")
+	welcome_string := "Welcome to simple Webserver!\n" + env
+	fmt.Fprintf(w, welcome_string)
 }
 
 func Health(w http.ResponseWriter, r *http.Request) {

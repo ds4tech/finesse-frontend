@@ -28,35 +28,35 @@ API:
 ```
 go build -o webserver cmd/main.go 
 ./webserver
+```
 
 http://localhost:9090/
-```
 
 ### Docker container <a name="build.docker"></a>
 ```
-docker build -t covantis-webserver:0.0.1 .
-docker run -it --rm -p 9090:9090 --name hello-covantis-webserver covantis-webserver:0.0.1
+docker build . -t ds4tech/webserver:0.0.1
+docker run -it --rm -p 9090:9090 --name hello-webserver ds4tech/webserver:0.0.1
+```
 
 http://localhost:9090/
-```
 
 ## DEPLOY <a name="deploy"></a>
 
 ### Kubernetes <a name="deploy.k8s"></a>
 ```
 kubectl apply -f deployment/kubernetes/manifest.yaml
-kubectl port-forward svc/hello-covantis 9090
+kubectl port-forward svc/hello-webserver 9090
+```
 
 http://localhost:9090/
-```
 
 ### Helm <a name="deploy.k8s"></a>
 ```
-helm install hello-covantis ./deployment/helm/charts/hello-covantis
-kubectl port-forward svc/hello-covantis 9090
+helm install hello-webserver ./deployment/helm/charts/hello-webserver
+kubectl port-forward svc/hello-webserver 9090
+```
 
 http://localhost:9090/
-```
 
 ## USEAGE <a name="usage"></a>
 

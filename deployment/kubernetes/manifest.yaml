@@ -2,43 +2,46 @@ apiVersion: apps/v1
 kind: Deployment
 metadata:
   labels:
-    app: hello-covantis
-  name: hello-covantis
-  namespace: monitoring
+    app: hello-webserver
+  name: hello-webserver
+  namespace: default
 spec:
   replicas: 1
   selector:
     matchLabels:
-      app: hello-covantis
+      app: hello-webserver
   strategy: {}
   template:
     metadata:
       labels:
-        app: hello-covantis
+        app: hello-webserver
     spec:
       containers:
-      - image: ds4tech/covantis:0.0.1
-        name: hello-covantis
+      - image: ds4tech/webserver:0.0.2
+        name: hello-webserver
         resources: {}
         ports:
           - name: container-port
             containerPort: 9090
             protocol: TCP
+        env:
+        - name: ENV
+          value: "Kubernetes"
 
 ---
 apiVersion: v1
 kind: Service
 metadata:
   labels:
-    app: hello-covantis
-  name: hello-covantis
-  namespace: monitoring
+    app: hello-webserver
+  name: hello-webserver
+  namespace: default
 spec:
   type: ClusterIP
   ports:
-  - name: covantis
+  - name: webserver
     port: 9090
     protocol: TCP
     targetPort: 9090
   selector:
-    app: hello-covantis
+    app: hello-webserver
