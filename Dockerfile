@@ -1,4 +1,7 @@
-FROM golang:1.17-alpine
+FROM golang:1.18-alpine
+RUN groupadd -g 999 appuser && \
+    useradd -r -u 999 -g appuser appuser
+USER appuser
 
 # Add Maintainer Info
 LABEL maintainer="Mateusz Szymczyk"
