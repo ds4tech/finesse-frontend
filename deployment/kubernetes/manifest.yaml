@@ -17,7 +17,7 @@ spec:
         app: hello-webserver
     spec:
       containers:
-      - image: ds4tech/webserver:0.0.2
+      - image: ds4tech/webserver:0.0.3
         name: hello-webserver
         resources: {}
         ports:
