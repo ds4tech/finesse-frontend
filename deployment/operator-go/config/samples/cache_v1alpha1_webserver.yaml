@@ -9,4 +9,27 @@ metadata:
     app.kubernetes.io/created-by: operator-go
   name: webserver-sample
 spec:
-  # TODO(user): Add fields here
+  size: 2
+
+  # replicas: 1
+  # selector:
+  #   matchLabels:
+  #     app: hello-webserver
+  # strategy: {}
+  # template:
+  #   metadata:
+  #     labels:
+  #       app: hello-webserver
+  #   spec:
+  #     containers:
+  #     - image: ds4tech/webserver:0.0.3
+  #       name: hello-webserver
+  #       resources: {}
+  #       ports:
+  #         - name: container-port
+  #           containerPort: 9090
+  #           protocol: TCP
+  #       env:
+  #       - name: ENV
+  #         value: "Operator"
+

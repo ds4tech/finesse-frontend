@@ -58,5 +58,7 @@ func (r *WebserverReconciler) Reconcile(ctx context.Context, req ctrl.Request) (
 func (r *WebserverReconciler) SetupWithManager(mgr ctrl.Manager) error {
 	return ctrl.NewControllerManagedBy(mgr).
 		For(&cachev1alpha1.Webserver{}).
+		Owns(&appsv1.Deployment{}).
+		// WithOptions(controller.Options{MaxConcurrentReconciles: 2}).
 		Complete(r)
 }

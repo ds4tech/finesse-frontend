@@ -35,10 +35,10 @@ spec:
           spec:
             description: WebserverSpec defines the desired state of Webserver
             properties:
-              foo:
-                description: Foo is an example field of Webserver. Edit webserver_types.go
-                  to remove/update
-                type: string
+              size:
+                description: Foo string `json:"foo,omitempty"`
+                format: int32
+                type: integer
             type: object
           status:
             description: WebserverStatus defines the observed state of Webserver
