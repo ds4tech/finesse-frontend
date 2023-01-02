@@ -4,7 +4,7 @@ metadata:
   labels:
     app: hello-webserver
   name: hello-webserver
-  namespace: default
+  # namespace: default
 spec:
   replicas: 1
   selector:
@@ -17,7 +17,7 @@ spec:
         app: hello-webserver
     spec:
       containers:
-      - image: ds4tech/webserver:0.0.3
+      - image: ds4tech/webserver:0.0.4
         name: hello-webserver
         resources: {}
         ports:
@@ -35,7 +35,7 @@ metadata:
   labels:
     app: hello-webserver
   name: hello-webserver
-  namespace: default
+  # namespace: default
 spec:
   type: ClusterIP
   ports:

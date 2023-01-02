@@ -1,6 +1,6 @@
-module github.com/ds4tech/covantis-sre
+module github.com/ds4tech/webserver
 
-go 1.17
+go 1.18
 
 replace github.com/ds4tech/covantis-sre/pkg/common => ./pkg/common
 
