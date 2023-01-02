@@ -41,12 +41,18 @@ var routes = Routes{
 	},
 	Route{
 		"Index",
+		"POST",
+		"/",
+		HomeLink,
+	},
+	Route{
+		"Index",
 		"GET",
 		"/-/health",
 		Health,
 	},
 	Route{
-		"sqrtHandler",
+		"echoHandler",
 		"GET",
 		"/api/echo",
 		EchoHandler,
