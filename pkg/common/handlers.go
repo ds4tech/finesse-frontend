@@ -36,8 +36,8 @@ func HomeLink(w http.ResponseWriter, r *http.Request) {
 		// Message: r.FormValue("message"),
 	}
 
-	// send request to calc
-	url := "http://localhost:8888/v1/sum"
+	// send request to calc container (docker run)
+	url := "http://localhost/v1/sum"
 	method := "POST"
 
 	payload := strings.NewReader(fmt.Sprintf("{\"num1\":\"%v\",\"num2\":\"%v\"}\n", details.Num1, details.Num2))
