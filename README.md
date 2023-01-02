@@ -22,6 +22,8 @@ API:
 - /-/health - returns server version 
 - echo - /api/echo?text=foo --> returns a JSON object with the key "text
 
+Main page shows form which allows to input values which are sent to calculator webservice.
+
 ## BUILD <a name="build"></a>
 
 ### Executable <a name="build.exe"></a>
