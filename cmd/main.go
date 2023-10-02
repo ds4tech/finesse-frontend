@@ -21,7 +21,7 @@ const (
 	service     = "trace-demo"
 	environment = "production"
 	id          = 1
-	port        = ":9091"
+	port        = ":9090"
 )
 
 // tracerProvider returns an OpenTelemetry TracerProvider configured to use
