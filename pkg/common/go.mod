@@ -1,5 +1,5 @@
-module github.com/ds4tech/covantis-sre/pkg/common
+module ds4tech/finesse-frontend
 
-go 1.17
+go 1.21.1
 
 require github.com/gorilla/mux v1.8.0

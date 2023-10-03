@@ -1,7 +1,11 @@
-# Webserver
+# Webserver finesse-frontend
 
-Status of latest build of main branch:
-[![CircleCI](https://dl.circleci.com/status-badge/img/gh/ds4tech/webserver-frontend/tree/dev.svg?style=svg)](https://dl.circleci.com/status-badge/redirect/gh/ds4tech/webserver-frontend/tree/dev)
+Status of latest build from branches:<br/> 
+main:
+[![CircleCI](https://dl.circleci.com/status-badge/img/gh/ds4tech/finesse-frontend/tree/main.svg?style=svg)](https://dl.circleci.com/status-badge/redirect/gh/ds4tech/finesse-frontend/tree/main)
+<br/>
+dev:
+[![CircleCI](https://dl.circleci.com/status-badge/img/gh/ds4tech/finesse-frontend/tree/dev.svg?style=svg)](https://dl.circleci.com/status-badge/redirect/gh/ds4tech/finesse-frontend/tree/dev)
 
 
 ## PreReq
@@ -42,8 +46,8 @@ http://localhost:9090/
 
 ### Docker container <a name="build.docker"></a>
 ```
-docker build . -t ds4tech/webserver:0.0.1
-docker run -it --rm -p 9090:9090 --name hello-webserver ds4tech/webserver:0.0.1
+docker build . -t ds4tech/finesse-frontend:0.0.1
+docker run -it --rm -p 9090:9090 --name finesse-frontend ds4tech/finesse-frontend:0.0.1
 ```
 
 http://localhost:9090/
@@ -53,15 +57,15 @@ http://localhost:9090/
 ### Kubernetes <a name="deploy.k8s"></a>
 ```
 kubectl apply -f deployment/kubernetes/manifest.yaml
-kubectl port-forward svc/hello-webserver 9090
+kubectl port-forward svc/finesse-frontend 9090
 ```
 
 http://localhost:9090/
 
 ### Helm <a name="deploy.k8s"></a>
 ```
-helm install hello-webserver ./deployment/helm/charts/hello-webserver
-kubectl port-forward svc/hello-webserver 9090
+helm install finesse-frontend ./deployment/helm/charts/finesse-frontend
+kubectl port-forward svc/finesse-frontend 9090
 ```
 
 http://localhost:9090/
@@ -74,4 +78,4 @@ curl -X GET "http://localhost:9090/api/echo?text=testingJson"
 ```
 
 ## Continous Integration <a name="ci"></a>
-Pipeline script written in yaml file for Circle CI is placed in [build/ci directory](https://github.com/ds4tech/covantis-sre/blob/main/.circleci/config.yml).  <br>
+Pipeline script written in yaml file for Circle CI is placed in [build/ci directory](https://github.com/ds4tech/finesse-frontend/blob/dev/.circleci/config.yml).  <br>

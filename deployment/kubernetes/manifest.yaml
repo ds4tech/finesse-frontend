@@ -2,23 +2,23 @@ apiVersion: apps/v1
 kind: Deployment
 metadata:
   labels:
-    app: hello-webserver
-  name: hello-webserver
+    app: finesse-frontend
+  name: finesse-frontend
   # namespace: default
 spec:
   replicas: 1
   selector:
     matchLabels:
-      app: hello-webserver
+      app: finesse-frontend
   strategy: {}
   template:
     metadata:
       labels:
-        app: hello-webserver
+        app: finesse-frontend
     spec:
       containers:
-      - image: ds4tech/webserver:0.0.4
-        name: hello-webserver
+      - image: ds4tech/finesse-frontend:0.0.4
+        name: finesse-frontend
         resources: {}
         ports:
           - name: container-port
@@ -33,15 +33,15 @@ apiVersion: v1
 kind: Service
 metadata:
   labels:
-    app: hello-webserver
-  name: hello-webserver
+    app: finesse-frontend-svc
+  name: finesse-frontend-svc
   # namespace: default
 spec:
   type: ClusterIP
   ports:
-  - name: webserver
+  - name: finesse
     port: 9090
     protocol: TCP
     targetPort: 9090
   selector:
-    app: hello-webserver
+    app: finesse-frontend

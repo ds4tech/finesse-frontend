@@ -5,7 +5,7 @@ jobs:
     # Specify the execution environment. You can specify an image from Dockerhub or use one of our Convenience Images from CircleCI's Developer Hub.
     # See: https://circleci.com/docs/2.0/configuration-reference/#docker-machine-macos-windows-executor
     docker:
-      - image: cimg/go:1.20
+      - image: cimg/go:1.21.1
     # Add steps to the job
     # See: https://circleci.com/docs/2.0/configuration-reference/#steps
     steps:
@@ -18,16 +18,16 @@ jobs:
             # "golangci-lint run"
       - run:
           name: "Build code"
-          command: "go build -o webserver cmd/main.go"
+          command: "go build -o finesse cmd/main.go"
   test:
     docker:
-      - image: cimg/go:1.20
+      - image: cimg/go:1.21.1
     steps:
       - checkout
       - run:
           name: "Acceptance test"
           command: "ls"
-            # "./webserver"
+            # "./finesse"
             # "curl -X GET 'http://localhost:9090/api/echo?text=testingJson' "
   package:
     # working_directory: /app
@@ -42,15 +42,15 @@ jobs:
           command: |
             ls -l
       - run:
-          name: Build application Docker image
+          name: Login to Docker Registry
           command: |
             echo "$REGISTRY_PASS" | docker login --username "$REGISTRY_USER" --password-stdin
       - run:
-          name: Push image to repo
+          name: Build and Push image to repo
           command: |
             TAG=0.0.$CIRCLE_BUILD_NUM
-            docker build . -t ds4tech/webserver-frontend:$TAG
-            docker push ds4tech/webserver-frontend:$TAG
+            docker build . -t ds4tech/finesse-frontend:$TAG
+            docker push ds4tech/finesse-frontend:$TAG
 
 # Invoke jobs via workflows
 # See: https://circleci.com/docs/2.0/configuration-reference/#workflows
