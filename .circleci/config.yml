@@ -49,6 +49,7 @@ jobs:
       - run:
           name: Push image to repo
           command: |
+            docker-credential-helpers configure
             echo "$REGISTRY_PASS" | docker login --username "$REGISTRY_USER" --password-stdin
             docker push ds4tech/webserver-frontend:$TAG
 
