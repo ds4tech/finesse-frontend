@@ -21,7 +21,9 @@ gcloud iam workload-identity-pools create github-actions-pool \
 ```
 #### OICD
 ```
-gcloud iam workload-identity-pools providers create-oidc github-actions-oidc --workload-identity-pool="github-actions-pool" --issuer-uri="https://token.actions.ds4tech.com/" --attribute-mapping="google.subject=assertion.sub,attribute.repository=assertion.repository,attribute.repository_owner=assertion.repository_owner,attribute.branch=assertion.sub.extract('/heads/{branch}/')" \
+gcloud iam workload-identity-pools providers create-oidc github-actions-oidc --workload-identity-pool="github-actions-pool" \
+--issuer-uri="https://token.actions.GitHubusercontent.com/" \
+--attribute-mapping="google.subject=assertion.sub,attribute.repository=assertion.repository,attribute.repository_owner=assertion.repository_owner,attribute.branch=assertion.sub.extract('/heads/{branch}/')" \
 --location=global \
 --attribute-condition="assertion.repository_owner=='ds4tech'"
 ```
