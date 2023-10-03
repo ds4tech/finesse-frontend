@@ -52,7 +52,7 @@ env:
   PROJECT_ID: fourkeys-386218
   GAR_LOCATION: europe-central2
   SERVICE: finesse-frontend
-  REGION: eu-central1
+  REGION: europe-central2
 
 jobs:
   deploy:
@@ -64,7 +64,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
-        uses: actions/checkout@v2
+        uses: actions/checkout@v3
 
       - name: Google Auth
         id: auth
