@@ -6,7 +6,7 @@ import (
 	"net/http"
 	"os"
 
-	"github.com/ds4tech/covantis-sre/pkg/common"
+	"github.com/ds4tech/finesse-frontend/pkg/common"
 )
 
 const (

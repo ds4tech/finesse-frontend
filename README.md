@@ -2,10 +2,10 @@
 
 Status of latest build from branches:<br/> 
 main:
-[![CircleCI](https://dl.circleci.com/status-badge/img/gh/ds4tech/webserver-frontend/tree/main.svg?style=svg)](https://dl.circleci.com/status-badge/redirect/gh/ds4tech/webserver-frontend/tree/main)
+[![CircleCI](https://dl.circleci.com/status-badge/img/gh/ds4tech/finesse-frontend/tree/main.svg?style=svg)](https://dl.circleci.com/status-badge/redirect/gh/ds4tech/finesse-frontend/tree/main)
 <br/>
 dev:
-[![CircleCI](https://dl.circleci.com/status-badge/img/gh/ds4tech/webserver-frontend/tree/dev.svg?style=svg)](https://dl.circleci.com/status-badge/redirect/gh/ds4tech/webserver-frontend/tree/dev)
+[![CircleCI](https://dl.circleci.com/status-badge/img/gh/ds4tech/finesse-frontend/tree/dev.svg?style=svg)](https://dl.circleci.com/status-badge/redirect/gh/ds4tech/finesse-frontend/tree/dev)
 
 
 ## PreReq
