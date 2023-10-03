@@ -36,12 +36,11 @@ jobs:
       - run:
           name: Where am I
           command: |
-            pwd;
+            ls -l
       - run:
           name: Build application Docker image
           command: |
-            ls -l;
-            docker build --cache-from=app -t app .
+            docker build . -t ds4tech/webserver-frontend:0.0.1
 
 # Invoke jobs via workflows
 # See: https://circleci.com/docs/2.0/configuration-reference/#workflows
