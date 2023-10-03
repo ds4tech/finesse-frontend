@@ -49,7 +49,7 @@ jobs:
       - run:
           name: Push image to repo
           command: |
-            docker login -u $REGISTRY_USER -p $REGISTRY_PASS
+            echo "$REGISTRY_PASS" | docker login --username "$REGISTRY_USER" --password-stdin
             docker push ds4tech/webserver-frontend:$TAG
 
 # Invoke jobs via workflows
