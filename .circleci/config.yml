@@ -30,6 +30,8 @@ jobs:
             # "./finesse"
             # "curl -X GET 'http://localhost:9090/api/echo?text=testingJson' "
   package:
+    configuration_path: ".circleci/main.yml"
+    parameters: /home/circleci/params.json
     # working_directory: /app
     docker:
       - image: cimg/base:2022.06
@@ -37,6 +39,17 @@ jobs:
       - checkout
       - setup_remote_docker:
           version: 20.10.23
+
+      - run:
+          command: |
+            if [ -z "${CIRCLE_PULL_REQUEST##*/}" ]
+            then
+              IS_PR=false
+            else
+              IS_PR=true
+            fi
+            echo '{ "is_pr": '$IS_PR' }' >> /home/circleci/params.json
+
       - run:
           name: Where am I
           command: |
@@ -62,9 +75,7 @@ workflows:
           requires:
             - build
       - package:
-          target_branch: "dev"
           requires:
-            - build
             - test
       # - deploy-qa:
       #     head_branch: "dev"
