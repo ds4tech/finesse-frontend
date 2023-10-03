@@ -23,6 +23,7 @@ jobs:
     docker:
       - image: cimg/go:1.20
     steps:
+      - checkout
       - run:
           name: "Acceptance test"
           command: "ls"
@@ -33,6 +34,7 @@ jobs:
     docker:
       - image: cimg/go:1.20
     steps:
+      - checkout
       - run:
           name: Where am I
           command: |
