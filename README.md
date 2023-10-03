@@ -3,6 +3,12 @@
 Status of latest build of main branch:
 [![CircleCI](https://dl.circleci.com/status-badge/img/gh/ds4tech/webserver-frontend/tree/dev.svg?style=svg)](https://dl.circleci.com/status-badge/redirect/gh/ds4tech/webserver-frontend/tree/dev)
 
+
+## PreReq
+```
+export CALCULATOR_URL="http://localhost:8888"
+```
+
 ### Simple Web-server application written in Go lang.
 
 1. [Introduction](#intro)

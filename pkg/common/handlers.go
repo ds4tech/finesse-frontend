@@ -6,6 +6,7 @@ import (
 	"html/template"
 	"io/ioutil"
 	"net/http"
+	"os"
 	"strconv"
 	"strings"
 )
@@ -37,7 +38,8 @@ func HomeLink(w http.ResponseWriter, r *http.Request) {
 	}
 
 	// send request to calc container (docker run)
-	url := "http://localhost/v1/sum"
+	Calculator_url := os.Getenv("CALCULATOR_URL")
+	url := Calculator_url + "/v1/sum"
 	method := "POST"
 
 	payload := strings.NewReader(fmt.Sprintf("{\"num1\":\"%v\",\"num2\":\"%v\"}\n", details.Num1, details.Num2))

@@ -16,6 +16,8 @@ const (
 	port        = ":9090"
 )
 
+var Calculator_url string
+
 func main() {
 	// Register our TracerProvider as the global so any imported
 	// instrumentation in the future will default to using it.
@@ -35,9 +37,11 @@ func webserver() {
 
 	//starting webserver
 	env := os.Getenv("ENV")
+	Calculator_url = os.Getenv("CALCULATOR_URL")
 
 	fmt.Println("Starting server on port ", port)
 	fmt.Println("Environment: ", env)
+	fmt.Println("Calculator URL: ", Calculator_url)
 
 	router := common.NewRouter()
 	log.Fatal(http.ListenAndServe(port, router))
