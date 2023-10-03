@@ -46,3 +46,7 @@ workflows:
       - test:
           requires:
             - build
+      - package:
+          requires:
+            - build
+            - test
