@@ -62,10 +62,6 @@ workflows:
           requires:
             - build
       - package:
-          target_branch: "dev"
           requires:
             - build
             - test
-      # - deploy-qa:
-      #     head_branch: "dev"
-      #     target_branch: "main"
