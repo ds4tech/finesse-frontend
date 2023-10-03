@@ -1,7 +1,13 @@
 # Webserver
 
 Status of latest build of main branch:
-[![CircleCI](https://dl.circleci.com/status-badge/img/gh/ds4tech/covantis-sre/tree/main.svg?style=svg&circle-token=18832117c2bca409104a757503b2caa383c405ab)](https://dl.circleci.com/status-badge/redirect/gh/ds4tech/covantis-sre/tree/main)
+[![CircleCI](https://dl.circleci.com/status-badge/img/gh/ds4tech/webserver-frontend/tree/dev.svg?style=svg)](https://dl.circleci.com/status-badge/redirect/gh/ds4tech/webserver-frontend/tree/dev)
+
+
+## PreReq
+```
+export CALCULATOR_URL="http://localhost:8888"
+```
 
 ### Simple Web-server application written in Go lang.
 
@@ -21,6 +27,8 @@ Simple Webserver Go project:<a name="intro"></a>
 API:
 - /-/health - returns server version 
 - echo - /api/echo?text=foo --> returns a JSON object with the key "text
+
+Main page shows form which allows to input values which are sent to calculator webservice.
 
 ## BUILD <a name="build"></a>
 

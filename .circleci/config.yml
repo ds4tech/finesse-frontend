@@ -5,7 +5,7 @@ jobs:
     # Specify the execution environment. You can specify an image from Dockerhub or use one of our Convenience Images from CircleCI's Developer Hub.
     # See: https://circleci.com/docs/2.0/configuration-reference/#docker-machine-macos-windows-executor
     docker:
-      - image: cimg/go:1.17
+      - image: cimg/go:1.20
     # Add steps to the job
     # See: https://circleci.com/docs/2.0/configuration-reference/#steps
     steps:
@@ -21,20 +21,47 @@ jobs:
           command: "go build -o webserver cmd/main.go"
   test:
     docker:
-      - image: cimg/go:1.17
+      - image: cimg/go:1.20
     steps:
+      - checkout
       - run:
           name: "Acceptance test"
           command: "ls"
             # "./webserver"
             # "curl -X GET 'http://localhost:9090/api/echo?text=testingJson' "
+  package:
+    # working_directory: /app
+    docker:
+      - image: cimg/base:2022.06
+    steps:
+      - checkout
+      - setup_remote_docker:
+          version: 20.10.23
+      - run:
+          name: Where am I
+          command: |
+            ls -l
+      - run:
+          name: Build application Docker image
+          command: |
+            echo "$REGISTRY_PASS" | docker login --username "$REGISTRY_USER" --password-stdin
+      - run:
+          name: Push image to repo
+          command: |
+            TAG=0.0.$CIRCLE_BUILD_NUM
+            docker build . -t ds4tech/webserver-frontend:$TAG
+            docker push ds4tech/webserver-frontend:$TAG
 
 # Invoke jobs via workflows
 # See: https://circleci.com/docs/2.0/configuration-reference/#workflows
 workflows:
-  build-test-workflow:
+  Continuous-integration:
     jobs:
       - build
       - test:
           requires:
             - build
+      - package:
+          requires:
+            - build
+            - test

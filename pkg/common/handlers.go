@@ -4,7 +4,11 @@ import (
 	"encoding/json"
 	"fmt"
 	"html/template"
+	"io/ioutil"
 	"net/http"
+	"os"
+	"strconv"
+	"strings"
 )
 
 var dat map[string]interface{}
@@ -33,10 +37,43 @@ func HomeLink(w http.ResponseWriter, r *http.Request) {
 		// Message: r.FormValue("message"),
 	}
 
-	// do something with details
-	_ = details
+	// send request to calc container (docker run)
+	Calculator_url := os.Getenv("CALCULATOR_URL")
+	url := Calculator_url + "/v1/sum"
+	method := "POST"
+
+	payload := strings.NewReader(fmt.Sprintf("{\"num1\":\"%v\",\"num2\":\"%v\"}\n", details.Num1, details.Num2))
+
+	client := &http.Client{}
+	req, err := http.NewRequest(method, url, payload)
+
+	if err != nil {
+		fmt.Println(err)
+		return
+	}
+	req.Header.Add("Content-Type", "application/json")
+
+	res, err := client.Do(req)
+	if err != nil {
+		fmt.Println(err)
+		return
+	}
+	defer res.Body.Close()
+
+	body, err := ioutil.ReadAll(res.Body)
+	if err != nil {
+		fmt.Println(err)
+		return
+	}
+	fmt.Println(string(body))
+	json.Unmarshal(body, &dat)
+	// end
 
 	tmpl.Execute(w, struct{ Success bool }{true})
+
+	result := strconv.Itoa(int(dat["result"].(float64)))
+	fmt.Fprintf(w, "Result is: ")
+	fmt.Fprintf(w, result)
 }
 
 func Health(w http.ResponseWriter, r *http.Request) {
