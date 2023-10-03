@@ -1,7 +1,7 @@
 # Webserver
 
 Status of latest build of main branch:
-[![CircleCI](https://dl.circleci.com/status-badge/img/gh/ds4tech/covantis-sre/tree/main.svg?style=svg&circle-token=18832117c2bca409104a757503b2caa383c405ab)](https://dl.circleci.com/status-badge/redirect/gh/ds4tech/covantis-sre/tree/main)
+[![CircleCI](https://dl.circleci.com/status-badge/img/gh/ds4tech/webserver-frontend/tree/dev.svg?style=svg)](https://dl.circleci.com/status-badge/redirect/gh/ds4tech/webserver-frontend/tree/dev)
 
 ### Simple Web-server application written in Go lang.
 
