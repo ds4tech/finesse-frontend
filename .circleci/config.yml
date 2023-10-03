@@ -44,7 +44,6 @@ jobs:
       - run:
           name: Build application Docker image
           command: |
-            docker-credential-helpers configure
             echo "$REGISTRY_PASS" | docker login --username "$REGISTRY_USER" --password-stdin
       - run:
           name: Push image to repo
