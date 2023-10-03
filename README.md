@@ -19,26 +19,25 @@ gcloud iam workload-identity-pools create github-actions-pool \
 --description="The pool to authenticate GitHub actions." \
 --display-name="GitHub Actions Pool"
 ```
-
+#### OICD
 ```
 gcloud iam workload-identity-pools providers create-oidc github-actions-oidc --workload-identity-pool="github-actions-pool" --issuer-uri="https://token.actions.ds4tech.com/" --attribute-mapping="google.subject=assertion.sub,attribute.repository=assertion.repository,attribute.repository_owner=assertion.repository_owner,attribute.branch=assertion.sub.extract('/heads/{branch}/')" \
 --location=global \
---attribute-condition="assertion.repository_owner=='sec-mik'"
+--attribute-condition="assertion.repository_owner=='ds4tech'"
 ```
 
-Create Service Account
+#### Create Service Account
 ```
 gcloud iam service-accounts create finesse-frontend-sa --display-name="Finesse Application Service Account" --description="manages the application resources"
-
-gcloud iam service-accounts create networking-sa --display-name="Networking Service Account" --description="manages the networking resources
 ```
 
-Add policy binding
+#### Add policy binding
 ```
-gcloud iam service-accounts add-iam-policy-binding finesse-frontend-sa@production-secmik.iam.gserviceaccount.com \
-  --role="roles/iam.workloadIdentityUser" \
---member="principalSet://iam.googleapis.com/projects/987654321/locations/global/workloadIdentityPools/github-actions-pool/attribute.repository/sec-mik/finesse-frontend-repo"
+gcloud iam service-accounts add-iam-policy-binding finesse-frontend-sa@fourkeys-386218.iam.gserviceaccount.com --role="roles/iam.workloadIdentityUser" \
+--member="principal://iam.googleapis.com/projects/29322109009/locations/global/workloadIdentityPools/github-actions-pool/subject/repo:ds4tech/finesse-frontend:ref:refs/heads/main"
 ```
+
+
 ## Simple Web-server application written in Go lang.
 
 1. [Introduction](#intro)
