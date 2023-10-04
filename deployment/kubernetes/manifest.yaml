@@ -22,7 +22,7 @@ spec:
         resources: {}
         ports:
           - name: container-port
-            containerPort: 9090
+            containerPort: 8080
             protocol: TCP
         env:
         - name: ENV
@@ -40,8 +40,8 @@ spec:
   type: ClusterIP
   ports:
   - name: finesse
-    port: 9090
+    port: 8080
     protocol: TCP
-    targetPort: 9090
+    targetPort: 8080
   selector:
     app: finesse-frontend

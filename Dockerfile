@@ -26,7 +26,7 @@ RUN go build -v -o /usr/local/bin/webserver ./cmd/main.go
 
 
 # Expose port 8888 to the outside world
-EXPOSE 9090
+EXPOSE 8080
 
 # Command to run the executable
 CMD ["webserver"]
