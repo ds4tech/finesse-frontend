@@ -31,7 +31,10 @@ gcloud iam workload-identity-pools providers create-oidc github-actions-oidc --w
 --location=global \
 --attribute-condition="assertion.repository_owner=='ds4tech'"
 ```
-
+Get provide name:
+```
+gcloud iam workload-identity-pools providers describe github-actions-oidc --location="global" --project="fourkeys-386218" --workload-identity-pool="github-actions-pool"
+```
 #### Create Service Account
 ```
 gcloud iam service-accounts create finesse-frontend-sa --display-name="Finesse Application Service Account" --description="manages the application resources"
