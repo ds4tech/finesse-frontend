@@ -13,6 +13,10 @@ dev:
 export CALCULATOR_URL="http://localhost:8888"
 ```
 ### Google Account
+Based on:
+https://cloud.google.com/iam/docs/workload-identity-federation-with-deployment-pipelines#gcloud
+
+#### Create WIF
 ```
 gcloud iam workload-identity-pools create github-actions-pool \
 --location="global" \
@@ -22,7 +26,7 @@ gcloud iam workload-identity-pools create github-actions-pool \
 #### OICD
 ```
 gcloud iam workload-identity-pools providers create-oidc github-actions-oidc --workload-identity-pool="github-actions-pool" \
---issuer-uri="https://token.actions.GitHubusercontent.com/" \
+--issuer-uri="https://token.actions.githubusercontent.com/" \
 --attribute-mapping="google.subject=assertion.sub,attribute.repository=assertion.repository,attribute.repository_owner=assertion.repository_owner,attribute.branch=assertion.sub.extract('/heads/{branch}/')" \
 --location=global \
 --attribute-condition="assertion.repository_owner=='ds4tech'"
@@ -36,8 +40,15 @@ gcloud iam service-accounts create finesse-frontend-sa --display-name="Finesse A
 #### Add policy binding
 ```
 gcloud iam service-accounts add-iam-policy-binding finesse-frontend-sa@fourkeys-386218.iam.gserviceaccount.com --role="roles/iam.workloadIdentityUser" \
+--member="principalSet://iam.googleapis.com/projects/29322109009/locations/global/workloadIdentityPools/github-actions-pool/attribute.repository/ds4tech/finesse-frontend"
+```
+More about Service account impersonation: https://cloud.google.com/iam/docs/workload-identity-federation#impersonation
+```
+gcloud iam service-accounts add-iam-policy-binding finesse-frontend-sa@fourkeys-386218.iam.gserviceaccount.com --role="roles/iam.workloadIdentityUser" \
 --member="principal://iam.googleapis.com/projects/29322109009/locations/global/workloadIdentityPools/github-actions-pool/subject/repo:ds4tech/finesse-frontend:ref:refs/heads/main"
 ```
+#### TROUBLESHOOTING
+https://github.com/google-github-actions/auth/blob/main/docs/TROUBLESHOOTING.md
 
 
 ## Simple Web-server application written in Go lang.
