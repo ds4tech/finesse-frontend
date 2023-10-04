@@ -39,14 +39,21 @@ gcloud iam service-accounts create finesse-frontend-sa --display-name="Finesse A
 
 #### Add policy binding
 ```
-gcloud iam service-accounts add-iam-policy-binding finesse-frontend-sa@fourkeys-386218.iam.gserviceaccount.com --role="roles/iam.workloadIdentityUser" \
---member="principalSet://iam.googleapis.com/projects/29322109009/locations/global/workloadIdentityPools/github-actions-pool/attribute.repository/ds4tech/finesse-frontend"
+gcloud iam service-accounts add-iam-policy-binding finesse-frontend-sa@fourkeys-386218.iam.gserviceaccount.com --role="roles/CustomWorkloadIdentityUser" \
+--member="principalSet://iam.googleapis.com/projects/29322109009/locations/global/workloadIdentityPools/github-actions-pool/attribute.repository_owner/ds4tech"
 ```
 More about Service account impersonation: https://cloud.google.com/iam/docs/workload-identity-federation#impersonation
+
 ```
 gcloud iam service-accounts add-iam-policy-binding finesse-frontend-sa@fourkeys-386218.iam.gserviceaccount.com --role="roles/iam.workloadIdentityUser" \
 --member="principal://iam.googleapis.com/projects/29322109009/locations/global/workloadIdentityPools/github-actions-pool/subject/repo:ds4tech/finesse-frontend:ref:refs/heads/main"
 ```
+
+#### Create Artifact Registry
+```
+ gcloud beta artifacts repositories create finesse-frontend --repository-format=docker --location=europe-central2 --description="Docker repository"
+```
+
 #### TROUBLESHOOTING
 https://github.com/google-github-actions/auth/blob/main/docs/TROUBLESHOOTING.md
 
