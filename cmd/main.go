@@ -13,7 +13,7 @@ const (
 	service     = "trace-demo"
 	environment = "production"
 	id          = 1
-	port        = ":9090"
+	port        = ":8080"
 )
 
 var Calculator_url string

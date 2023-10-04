@@ -15,6 +15,7 @@ export CALCULATOR_URL="http://localhost:8888"
 ### Google Account
 Based on:
 https://cloud.google.com/iam/docs/workload-identity-federation-with-deployment-pipelines#gcloud
+https://cloud.google.com/blog/products/identity-security/secure-your-use-of-third-party-tools-with-identity-federation
 
 #### Create WIF
 ```
@@ -90,39 +91,39 @@ go build -o webserver cmd/main.go
 ./webserver
 ```
 
-http://localhost:9090/
+http://localhost:8080/
 
 ### Docker container <a name="build.docker"></a>
 ```
 docker build . -t ds4tech/finesse-frontend:0.0.1
-docker run -it --rm -p 9090:9090 --name finesse-frontend ds4tech/finesse-frontend:0.0.1
+docker run -it --rm -p 8080:8080 --name finesse-frontend ds4tech/finesse-frontend:0.0.1
 ```
 
-http://localhost:9090/
+http://localhost:8080/
 
 ## DEPLOY <a name="deploy"></a>
 
 ### Kubernetes <a name="deploy.k8s"></a>
 ```
 kubectl apply -f deployment/kubernetes/manifest.yaml
-kubectl port-forward svc/finesse-frontend 9090
+kubectl port-forward svc/finesse-frontend 8080
 ```
 
-http://localhost:9090/
+http://localhost:8080/
 
 ### Helm <a name="deploy.k8s"></a>
 ```
 helm install finesse-frontend ./deployment/helm/charts/finesse-frontend
-kubectl port-forward svc/finesse-frontend 9090
+kubectl port-forward svc/finesse-frontend 8080
 ```
 
-http://localhost:9090/
+http://localhost:8080/
 
 ## USEAGE <a name="usage"></a>
 
 1. Echo
 ```
-curl -X GET "http://localhost:9090/api/echo?text=testingJson"
+curl -X GET "http://localhost:8080/api/echo?text=testingJson"
 ```
 
 ## Continous Integration <a name="ci"></a>
