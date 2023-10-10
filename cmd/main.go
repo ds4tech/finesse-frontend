@@ -42,6 +42,10 @@ func webserver() {
 	fmt.Println("Starting server on port ", port)
 	fmt.Println("Environment: ", env)
 	fmt.Println("Calculator URL: ", Calculator_url)
+	if Calculator_url == "" {
+		log.Println("Calculator_url Environment Variable not set! Application will throw an error when submitting request.")
+		// log.Fatal("Calculator_url Environment Variable not set! Application will throw an error when submitting request.")
+	}
 
 	router := common.NewRouter()
 	log.Fatal(http.ListenAndServe(port, router))
