@@ -5,10 +5,13 @@ import (
 	"fmt"
 	"html/template"
 	"io/ioutil"
+	"log"
+	"net"
 	"net/http"
 	"os"
 	"strconv"
 	"strings"
+	"time"
 )
 
 var dat map[string]interface{}
@@ -17,6 +20,12 @@ type CalcDetails struct {
 	Num1 string
 	Num2 string
 	// Message string
+}
+
+var timeout = time.Duration(3 * time.Second)
+
+func dialTimeout(network, addr string) (net.Conn, error) {
+	return net.DialTimeout(network, addr, timeout)
 }
 
 func HomeLink(w http.ResponseWriter, r *http.Request) {
@@ -44,11 +53,16 @@ func HomeLink(w http.ResponseWriter, r *http.Request) {
 
 	payload := strings.NewReader(fmt.Sprintf("{\"num1\":\"%v\",\"num2\":\"%v\"}\n", details.Num1, details.Num2))
 
-	client := &http.Client{}
+	// transport := http.Transport{
+	// 	Dial: dialTimeout,
+	// }
+	client := &http.Client{
+		// Transport: &transport,
+	}
 	req, err := http.NewRequest(method, url, payload)
 
 	if err != nil {
-		fmt.Println(err)
+		log.Println(err)
 		return
 	}
 	req.Header.Add("Content-Type", "application/json")
