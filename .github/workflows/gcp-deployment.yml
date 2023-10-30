@@ -45,7 +45,7 @@
 name: Deploy to Cloud Run
 
 on:
-  push
+  [push]
 
 env:
   PROJECT_ID: fourkeys-386218
@@ -62,9 +62,14 @@ jobs:
 
     runs-on: ubuntu-latest
     steps: 
-      - name: Create Deployment Action
-        uses: altinukshini/deployment-action@v1.2.6
-
+      - name: Craete Github Deployment Action
+        uses: chrnorm/deployment-action@v2.0.5
+        id: deployment
+        with:
+          token: '${{ github.token }}'
+          # environment-url: https://finesse-frontend-uterycxntq-lm.a.run.app
+          environment: dev
+  
       - name: Checkout
         uses: actions/checkout@v3
 
