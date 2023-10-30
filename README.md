@@ -8,10 +8,14 @@ dev:
 [![CircleCI](https://dl.circleci.com/status-badge/img/gh/ds4tech/finesse-frontend/tree/dev.svg?style=svg)](https://dl.circleci.com/status-badge/redirect/gh/ds4tech/finesse-frontend/tree/dev)
 
 
-## PreReq
+## 
 ```
 export CALCULATOR_URL="http://localhost:8888"
 ```
+
+## PreReq to deploy this on CloudRun using Github Actions.
+Certain resources must be created before the pipeline can be triggered. Otherwise it will fail, compleining on missing resources.
+ 
 ### Google Account
 Based on:
 https://cloud.google.com/iam/docs/workload-identity-federation-with-deployment-pipelines#gcloud
