@@ -16,7 +16,7 @@ const (
 	port        = ":8080"
 )
 
-var Calculator_url string
+var Calculator_url, Otlp_endpoint string
 
 func main() {
 	// Register our TracerProvider as the global so any imported
@@ -38,6 +38,7 @@ func webserver() {
 	//starting webserver
 	env := os.Getenv("ENV")
 	Calculator_url = os.Getenv("CALCULATOR_URL")
+	Otlp_endpoint = os.Getenv("OTEL_EXPORTER_OTLP_ENDPOINT")
 
 	fmt.Println("Starting server on port ", port)
 	fmt.Println("Environment: ", env)
