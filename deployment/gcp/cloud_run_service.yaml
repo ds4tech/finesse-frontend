@@ -28,8 +28,8 @@ spec:
           value: "http://localhost:4317"
         resources:
           limits:
-            cpu: 1000m
-            memory: 512Mi
+            cpu: 600m
+            memory: 128Mi
         startupProbe:
           failureThreshold: 1
           periodSeconds: 240
@@ -42,6 +42,10 @@ spec:
           httpGet:
             path: /
             port: 13133
+        resources:
+          limits:
+            cpu: 400m
+            memory: 128Mi
       serviceAccountName: 29322109009-compute@developer.gserviceaccount.com
       timeoutSeconds: 300
   traffic:
