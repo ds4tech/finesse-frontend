@@ -1,8 +1,11 @@
 
-name: Deploy to Cloud Run
+name: Deploy to Cloud Run from Main
 
 on:
-  [push]
+  push:
+    branches:
+      - main
+      - 'releases/**'
 
 jobs:
   build:
@@ -25,12 +28,19 @@ jobs:
         if: success()
         uses: chrnorm/deployment-status@v2
         with:
-          # token: "${{ secrets.WIF_PROVIDER }}"
-          # target_url: https://finesse-frontend-uterycxntq-lm.a.run.app
           token: '${{ github.token }}'
           environment-url: ${{ steps.deployment.outputs.environment_url }}
           deployment-id: ${{ steps.deployment.outputs.deployment_id }}
           state: 'success'
+
+      - name: Update deployment status (failure)
+        if: failure()
+        uses: chrnorm/deployment-status@v2
+        with:
+          token: '${{ github.token }}'
+          environment-url: ${{ steps.deployment.outputs.environment_url }}
+          deployment-id: ${{ steps.deployment.outputs.deployment_id }}
+          state: 'failure'
 
       # - name: Deploy to Cloud Run
       #   uses: google-github-actions/deploy-cloudrun@v1.0.2
