@@ -1,50 +1,50 @@
 
-# name: Deploy to Cloud Run - seem not to work (workflow_job)
+name: Deploy to Cloud Run - seem not to work (workflow_job)
 
-# on:
-#   push:
-#     branches:
-#       - main
-#       - 'releases/**'
-#   workflow_dispatch:
-#   # pull_request:
-#   #   branches: [ "main" ]
+on:
+  push:
+    branches:
+      - main
+      - 'releases/**'
+  workflow_dispatch:
+  # pull_request:
+  #   branches: [ "main" ]
 
-# jobs:
-#   build:
-#     # Add 'id-token' with the intended permissions for workload identity federation
-#     permissions:
-#       contents: 'read'
-#       id-token: 'write'
-#       deployments: write
+jobs:
+  build:
+    # Add 'id-token' with the intended permissions for workload identity federation
+    permissions:
+      contents: 'read'
+      id-token: 'write'
+      deployments: write
 
-#     runs-on: ubuntu-latest
-#     steps: 
-#       - name: Triger Deployment Event
-#         uses: chrnorm/deployment-action@v2
-#         id: deployment
-#         with:
-#           token: "${{ github.token }}"
-#           environment: dev
+    runs-on: ubuntu-latest
+    steps: 
+      - name: Triger Deployment Event
+        uses: chrnorm/deployment-action@v2
+        id: deployment
+        with:
+          token: "${{ github.token }}"
+          environment: dev
 
-#       - name: Update deployment status (success)
-#         if: success()
-#         uses: chrnorm/deployment-status@v2
-#         with:
-#           token: '${{ github.token }}'
-#           environment-url: ${{ steps.deployment.outputs.environment_url }}
-#           deployment-id: ${{ steps.deployment.outputs.deployment_id }}
-#           state: 'success'
+      - name: Update deployment status (success)
+        if: success()
+        uses: chrnorm/deployment-status@v2
+        with:
+          token: '${{ github.token }}'
+          environment-url: ${{ steps.deployment.outputs.environment_url }}
+          deployment-id: ${{ steps.deployment.outputs.deployment_id }}
+          state: 'success'
 
-#       - name: Update deployment status (failure)
-#         if: failure()
-#         uses: chrnorm/deployment-status@v2
-#         with:
-#           token: '${{ github.token }}'
-#           environment-url: ${{ steps.deployment.outputs.environment_url }}
-#           deployment-id: ${{ steps.deployment.outputs.deployment_id }}
-#           state: 'failure'
+      - name: Update deployment status (failure)
+        if: failure()
+        uses: chrnorm/deployment-status@v2
+        with:
+          token: '${{ github.token }}'
+          environment-url: ${{ steps.deployment.outputs.environment_url }}
+          deployment-id: ${{ steps.deployment.outputs.deployment_id }}
+          state: 'failure'
 
-#       # - name: Deploy to Cloud Run
-#       #   uses: google-github-actions/deploy-cloudrun@v1.0.2
+      # - name: Deploy to Cloud Run
+      #   uses: google-github-actions/deploy-cloudrun@v1.0.2
       
