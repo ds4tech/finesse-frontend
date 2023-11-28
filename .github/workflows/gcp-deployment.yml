@@ -20,12 +20,12 @@ jobs:
 
     runs-on: ubuntu-latest
     steps: 
-      - name: Triger Deployment Event
-        uses: chrnorm/deployment-action@v2
-        id: deployment
-        with:
-          token: "${{ github.token }}"
-          environment: dev
+      # - name: Triger Deployment Event
+      #   uses: chrnorm/deployment-action@v2
+      #   id: deployment
+      #   with:
+      #     token: "${{ github.token }}"
+      #     environment: dev
 
       - name: Update deployment status (success)
         if: success()
