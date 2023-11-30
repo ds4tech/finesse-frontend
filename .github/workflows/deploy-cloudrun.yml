@@ -72,10 +72,8 @@ jobs:
         uses: 'google-github-actions/auth@v0'
         with:
           token_format: 'access_token'
-          workload_identity_provider:  projects/29322109009/locations/global/workloadIdentityPools/github-actions-pool/providers/github-actions-oidc 
-          # workload_identity_provider: '${{ secrets.WIF_PROVIDER }}' # e.g. - projects/123456789/locations/global/workloadIdentityPools/my-pool/providers/my-provider
-          service_account: 'finesse-frontend-sa@fourkeys-386218.iam.gserviceaccount.com'
-          # service_account: '${{ secrets.WIF_SERVICE_ACCOUNT }}' # e.g. - my-service-account@my-project.iam.gserviceaccount.com
+          workload_identity_provider: '${{ secrets.WIF_PROVIDER }}' # e.g. -  projects/29322109009/locations/global/workloadIdentityPools/github-actions-pool/providers/github-actions-oidc 
+          service_account: '${{ secrets.WIF_SERVICE_ACCOUNT }}' # e.g. - finesse-frontend-sa@fourkeys-386218.iam.gserviceaccount.com
 
       # NOTE: Alternative option - authentication via credentials json
       # - name: Google Auth
