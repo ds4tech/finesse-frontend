@@ -7,6 +7,10 @@ main:
 dev:
 [![CircleCI](https://dl.circleci.com/status-badge/img/gh/ds4tech/finesse-frontend/tree/dev.svg?style=svg)](https://dl.circleci.com/status-badge/redirect/gh/ds4tech/finesse-frontend/tree/dev)
 
+Remeber that there are two pipelines:
+	- github actions <br>
+	- circleCI <br>
+which duplicates the data and can fake metrics shown in Grafana dashboard.
 
 ## 
 ```
