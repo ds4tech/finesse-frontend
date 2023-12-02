@@ -25,7 +25,7 @@ Pipeline script written in yaml file for Circle CI is placed in [build/ci direct
 
 
 ## Github Actions <a name="gha"></a>
-### PreReq to deploy this on CloudRun using.
+### PreReq to deploy this on CloudRun.
 Certain resources must be created before the pipeline can be triggered. Otherwise it will fail, compleining on missing resources.
  
 ### Google Account
@@ -116,14 +116,6 @@ http://localhost:8080/
 ### Kubernetes <a name="deploy.k8s"></a>
 ```
 kubectl apply -f deployment/kubernetes/manifest.yaml
-kubectl port-forward svc/finesse-frontend 8080
-```
-
-http://localhost:8080/
-
-### Helm <a name="deploy.k8s"></a>
-```
-helm install finesse-frontend ./deployment/helm/charts/finesse-frontend
 kubectl port-forward svc/finesse-frontend 8080
 ```
 
