@@ -1,12 +1,5 @@
 # Webserver finesse-frontend
 
-Status of latest build from branches:<br/> 
-main:
-[![CircleCI](https://dl.circleci.com/status-badge/img/gh/ds4tech/finesse-frontend/tree/main.svg?style=svg)](https://dl.circleci.com/status-badge/redirect/gh/ds4tech/finesse-frontend/tree/main)
-<br/>
-dev:
-[![CircleCI](https://dl.circleci.com/status-badge/img/gh/ds4tech/finesse-frontend/tree/dev.svg?style=svg)](https://dl.circleci.com/status-badge/redirect/gh/ds4tech/finesse-frontend/tree/dev)
-
 
 ## CircleCI
 Remeber that there are two pipelines:<br>
@@ -14,12 +7,20 @@ Remeber that there are two pipelines:<br>
 	- circleCI <br>
 which duplicates the data and can fake metrics shown in Grafana dashboard.
 
+Status of latest build from branches:<br/> 
+main:
+[![CircleCI](https://dl.circleci.com/status-badge/img/gh/ds4tech/finesse-frontend/tree/main.svg?style=svg)](https://dl.circleci.com/status-badge/redirect/gh/ds4tech/finesse-frontend/tree/main)
+<br/>
+dev:
+[![CircleCI](https://dl.circleci.com/status-badge/img/gh/ds4tech/finesse-frontend/tree/dev.svg?style=svg)](https://dl.circleci.com/status-badge/redirect/gh/ds4tech/finesse-frontend/tree/dev)
+
 ## 
 ```
 export CALCULATOR_URL="http://localhost:8888"
 ```
 
-## PreReq to deploy this on CloudRun using Github Actions.
+## Github Actions
+### PreReq to deploy this on CloudRun using.
 Certain resources must be created before the pipeline can be triggered. Otherwise it will fail, compleining on missing resources.
  
 ### Google Account
