@@ -5,7 +5,7 @@ Simple Web-server application written in Go lang with pipelines deploying the ap
 1. [CircleCI](#circleCI)
 2. [Github Actions](#gha) <br>
    2.1. [setup IAM](#iam) <br>
-3. [Application](#ap)
+3. [Application run](#app)
 
 ## CircleCI  <a name="circleCI"></a>
 Remeber that there are two pipelines:<br>
@@ -20,10 +20,9 @@ main:
 dev:
 [![CircleCI](https://dl.circleci.com/status-badge/img/gh/ds4tech/finesse-frontend/tree/dev.svg?style=svg)](https://dl.circleci.com/status-badge/redirect/gh/ds4tech/finesse-frontend/tree/dev)
 
-## 
-```
-export CALCULATOR_URL="http://localhost:8888"
-```
+### Continous Integration <a name="ci"></a>
+Pipeline script written in yaml file for Circle CI is placed in [build/ci directory](https://github.com/ds4tech/finesse-frontend/blob/dev/.circleci/config.yml).  <br>
+
 
 ## Github Actions <a name="gha"></a>
 ### PreReq to deploy this on CloudRun using.
@@ -80,9 +79,14 @@ https://github.com/google-github-actions/auth/blob/main/docs/TROUBLESHOOTING.md
 
 
 
-## Application <a name="app"></a>
+## Application run <a name="app"></a>
 
-Simple Webserver Go project:<a name="intro"></a>
+Set env var
+```
+export CALCULATOR_URL="http://localhost:8888"
+```
+
+Simple Webserver Go project:
 API:
 - /-/health - returns server version 
 - echo - /api/echo?text=foo --> returns a JSON object with the key "text
@@ -132,5 +136,3 @@ http://localhost:8080/
 curl -X GET "http://localhost:8080/api/echo?text=testingJson"
 ```
 
-## Continous Integration <a name="ci"></a>
-Pipeline script written in yaml file for Circle CI is placed in [build/ci directory](https://github.com/ds4tech/finesse-frontend/blob/dev/.circleci/config.yml).  <br>
