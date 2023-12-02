@@ -1,13 +1,19 @@
 # Webserver finesse-frontend
 
+Simple Web-server application written in Go lang with pipelines deploying the app on GoogleCloud.
 
-## CircleCI
+1. [CircleCI](#circleCI)
+2. [Github Actions](#gha) <br>
+   2.1. [setup IAM](#iam) <br>
+3. [Application](#ap)
+
+## CircleCI  <a name="circleCI"></a>
 Remeber that there are two pipelines:<br>
 	- github actions <br>
 	- circleCI <br>
 which duplicates the data and can fake metrics shown in Grafana dashboard.
 
-Status of latest build from branches:<br/> 
+### Status of latest build from branches
 main:
 [![CircleCI](https://dl.circleci.com/status-badge/img/gh/ds4tech/finesse-frontend/tree/main.svg?style=svg)](https://dl.circleci.com/status-badge/redirect/gh/ds4tech/finesse-frontend/tree/main)
 <br/>
@@ -19,7 +25,7 @@ dev:
 export CALCULATOR_URL="http://localhost:8888"
 ```
 
-## Github Actions
+## Github Actions <a name="gha"></a>
 ### PreReq to deploy this on CloudRun using.
 Certain resources must be created before the pipeline can be triggered. Otherwise it will fail, compleining on missing resources.
  
@@ -28,7 +34,7 @@ Based on:
 https://cloud.google.com/iam/docs/workload-identity-federation-with-deployment-pipelines#gcloud
 https://cloud.google.com/blog/products/identity-security/secure-your-use-of-third-party-tools-with-identity-federation
 
-#### Create WIF
+#### Create WIF <a name="iam"></a>
 ```
 gcloud iam workload-identity-pools create github-actions-pool \
 --location="global" \
@@ -73,19 +79,8 @@ gcloud iam service-accounts add-iam-policy-binding finesse-frontend-sa@finesse-4
 https://github.com/google-github-actions/auth/blob/main/docs/TROUBLESHOOTING.md
 
 
-## Simple Web-server application written in Go lang.
 
-1. [Introduction](#intro)
-2. [Build](#build) <br>
-   2.1. [Exec](#build.exe) <br>
-   2.2. [Docker](#build.docker)
-3. [Deploy](#deploy) <br>
- 3.1. [Kubernetes](#deploy.k8s) <br>
-4. [Usage](#usage)
-5. [Continous Integration](#ci)
-
-
-## Introduction <a name="intro"></a>
+## Application <a name="app"></a>
 
 Simple Webserver Go project:<a name="intro"></a>
 API:
