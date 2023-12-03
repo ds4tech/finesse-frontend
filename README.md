@@ -95,9 +95,9 @@ API:
 
 Main page shows form which allows to input values which are sent to calculator webservice.
 
-## BUILD <a name="build"></a>
+### BUILD <a name="build"></a>
 
-### Executable <a name="build.exe"></a>
+#### Executable <a name="build.exe"></a>
 ```
 go build -o webserver cmd/main.go 
 ./webserver
@@ -105,7 +105,7 @@ go build -o webserver cmd/main.go
 
 http://localhost:8080/
 
-### Docker container <a name="build.docker"></a>
+#### Docker container <a name="build.docker"></a>
 ```
 docker build . -t ds4tech/finesse-frontend:0.0.1
 docker run -it --rm -p 8080:8080 --name finesse-frontend ds4tech/finesse-frontend:0.0.1
@@ -113,9 +113,9 @@ docker run -it --rm -p 8080:8080 --name finesse-frontend ds4tech/finesse-fronten
 
 http://localhost:8080/
 
-## DEPLOY <a name="deploy"></a>
+### DEPLOY <a name="deploy"></a>
 
-### Kubernetes <a name="deploy.k8s"></a>
+#### Kubernetes <a name="deploy.k8s"></a>
 ```
 kubectl apply -f deployment/kubernetes/manifest.yaml
 kubectl port-forward svc/finesse-frontend 8080
@@ -123,7 +123,7 @@ kubectl port-forward svc/finesse-frontend 8080
 
 http://localhost:8080/
 
-## USEAGE <a name="usage"></a>
+### USEAGE <a name="usage"></a>
 
 1. Echo
 ```
