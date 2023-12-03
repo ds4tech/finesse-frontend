@@ -11,7 +11,7 @@ Simple Web-server application written in Go lang with pipelines deploying the ap
 Remeber that there are two pipelines:<br>
 	- github actions <br>
 	- circleCI <br>
-which duplicates the data and can fake metrics shown in Grafana dashboard.
+which duplicates the data and can fake metrics shown in Grafana dashboard (depending on the Webhooks).
 
 ### Status of latest build from branches
 main:
