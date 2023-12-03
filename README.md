@@ -25,6 +25,8 @@ Pipeline script written in yaml file for Circle CI is placed in [build/ci direct
 
 
 ## Github Actions <a name="gha"></a>
+![Build and Deploy to Cloud Run](https://github.com/ds4tech/finesse-frontend/actions/workflows/deploy-cloudrun.yml/badge.svg)
+
 ### PreReq to deploy this on CloudRun.
 Certain resources must be created before the pipeline can be triggered. Otherwise it will fail, compleining on missing resources.
  
