@@ -1,19 +1,31 @@
 # Webserver finesse-frontend
 
-Status of latest build from branches:<br/> 
+Simple Web-server application written in Go lang with pipelines deploying the app on GoogleCloud.
+
+1. [CircleCI](#circleCI)
+2. [Github Actions](#gha) <br>
+   2.1. [setup IAM](#iam) <br>
+3. [Application run](#app)
+
+## CircleCI  <a name="circleCI"></a>
+Remeber that there are two pipelines:<br>
+	- github actions <br>
+	- circleCI <br>
+which duplicates the data and can fake metrics shown in Grafana dashboard.
+
+### Status of latest build from branches
 main:
 [![CircleCI](https://dl.circleci.com/status-badge/img/gh/ds4tech/finesse-frontend/tree/main.svg?style=svg)](https://dl.circleci.com/status-badge/redirect/gh/ds4tech/finesse-frontend/tree/main)
 <br/>
 dev:
 [![CircleCI](https://dl.circleci.com/status-badge/img/gh/ds4tech/finesse-frontend/tree/dev.svg?style=svg)](https://dl.circleci.com/status-badge/redirect/gh/ds4tech/finesse-frontend/tree/dev)
 
+### Continous Integration <a name="ci"></a>
+Pipeline script written in yaml file for Circle CI is placed in [build/ci directory](https://github.com/ds4tech/finesse-frontend/blob/dev/.circleci/config.yml).  <br>
 
-## 
-```
-export CALCULATOR_URL="http://localhost:8888"
-```
 
-## PreReq to deploy this on CloudRun using Github Actions.
+## Github Actions <a name="gha"></a>
+### PreReq to deploy this on CloudRun.
 Certain resources must be created before the pipeline can be triggered. Otherwise it will fail, compleining on missing resources.
  
 ### Google Account
@@ -21,7 +33,7 @@ Based on:
 https://cloud.google.com/iam/docs/workload-identity-federation-with-deployment-pipelines#gcloud
 https://cloud.google.com/blog/products/identity-security/secure-your-use-of-third-party-tools-with-identity-federation
 
-#### Create WIF
+#### Create WIF <a name="iam"></a>
 ```
 gcloud iam workload-identity-pools create github-actions-pool \
 --location="global" \
@@ -66,21 +78,15 @@ gcloud iam service-accounts add-iam-policy-binding finesse-frontend-sa@finesse-4
 https://github.com/google-github-actions/auth/blob/main/docs/TROUBLESHOOTING.md
 
 
-## Simple Web-server application written in Go lang.
 
-1. [Introduction](#intro)
-2. [Build](#build) <br>
-   2.1. [Exec](#build.exe) <br>
-   2.2. [Docker](#build.docker)
-3. [Deploy](#deploy) <br>
- 3.1. [Kubernetes](#deploy.k8s) <br>
-4. [Usage](#usage)
-5. [Continous Integration](#ci)
+## Application run <a name="app"></a>
 
+Set env var
+```
+export CALCULATOR_URL="http://localhost:8888"
+```
 
-## Introduction <a name="intro"></a>
-
-Simple Webserver Go project:<a name="intro"></a>
+Simple Webserver Go project:
 API:
 - /-/health - returns server version 
 - echo - /api/echo?text=foo --> returns a JSON object with the key "text
@@ -115,14 +121,6 @@ kubectl port-forward svc/finesse-frontend 8080
 
 http://localhost:8080/
 
-### Helm <a name="deploy.k8s"></a>
-```
-helm install finesse-frontend ./deployment/helm/charts/finesse-frontend
-kubectl port-forward svc/finesse-frontend 8080
-```
-
-http://localhost:8080/
-
 ## USEAGE <a name="usage"></a>
 
 1. Echo
@@ -130,5 +128,3 @@ http://localhost:8080/
 curl -X GET "http://localhost:8080/api/echo?text=testingJson"
 ```
 
-## Continous Integration <a name="ci"></a>
-Pipeline script written in yaml file for Circle CI is placed in [build/ci directory](https://github.com/ds4tech/finesse-frontend/blob/dev/.circleci/config.yml).  <br>
