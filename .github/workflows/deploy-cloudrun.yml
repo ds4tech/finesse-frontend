@@ -47,7 +47,7 @@ name: Build and Deploy to Cloud Run
 on:
   workflow_dispatch:
   push:
-    branches: [ "main" ]
+    branches: [ "dev" ]
 
 env:
   PROJECT_ID: finesse-406710
@@ -115,6 +115,9 @@ jobs:
         # gcloud auth print-access-token | docker login -u oauth2accesstoken --password-stdin https://europe-central2-docker.pkg.dev
       # END - Docker auth and build
 
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
       - name: Deploy to Cloud Run
         id: deploy
         uses: google-github-actions/deploy-cloudrun@v1.0.2
