@@ -47,7 +47,7 @@ name: Build and Deploy to Cloud Run
 on:
   workflow_dispatch:
   push:
-    branches: [ "dev" ]
+    branches: [ "main" ]
 
 env:
   PROJECT_ID: finesse-406710
@@ -110,7 +110,7 @@ jobs:
 
   deploy:
     runs-on: ubuntu-latest
-    needs: auth
+    needs: build
     steps:
       - name: Create Service declaration   
         run: |-
