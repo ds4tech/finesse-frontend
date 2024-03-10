@@ -56,18 +56,18 @@ gcloud iam workload-identity-pools providers describe github-actions-oidc --loca
 ```
 #### Create Service Account
 ```
-gcloud iam service-accounts create finesse-frontend-sa --display-name="Finesse Application Service Account" --description="manages the application resources"
+gcloud iam service-accounts create github-deploy-sa --display-name="Allow Github to deploy Applications" --description="manages the application resources"
 ```
 
 #### Add policy binding
 ```
-gcloud iam service-accounts add-iam-policy-binding finesse-frontend-sa@finesse-406710.iam.gserviceaccount.com --role="roles/CustomWorkloadIdentityUser" \
+gcloud iam service-accounts add-iam-policy-binding github-deploy-sa@finesse-406710.iam.gserviceaccount.com --role="roles/CustomWorkloadIdentityUser" \
 --member="principalSet://iam.googleapis.com/projects/645493513259/locations/global/workloadIdentityPools/github-actions-pool/attribute.repository_owner/ds4tech"
 ```
 More about Service account impersonation: https://cloud.google.com/iam/docs/workload-identity-federation#impersonation
 
 ```
-gcloud iam service-accounts add-iam-policy-binding finesse-frontend-sa@finesse-406710.iam.gserviceaccount.com --role="roles/iam.workloadIdentityUser" \
+gcloud iam service-accounts add-iam-policy-binding github-deploy-sa@finesse-406710.iam.gserviceaccount.com --role="roles/iam.workloadIdentityUser" \
 --member="principal://iam.googleapis.com/projects/645493513259/locations/global/workloadIdentityPools/github-actions-pool/subject/repo:ds4tech/finesse-frontend:ref:refs/heads/main"
 ```
 
